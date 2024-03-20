@@ -1,0 +1,17 @@
+::Massage Techniques::
+{
+::Question 1::
+The Swedish massage is the most suitable choice for those new to massage therapy. {T}
+::Question 2::
+Deep tissue massage is not ideal for addressing deeper musculoskeletal issues. {F}
+::Question 3::
+Shiatsu does not use rhythmic finger pressure along the body's meridian points. {F}
+::Question 4::
+General aromatherapy massage focuses on specific points on the feet and hands. {F}
+::Question 5::
+Hot stone massage penetrates muscles more deeply than the manual techniques of petrissage. {T}
+::Question 6::
+Sports massage is more beneficial for athletes than lymphatic drainage. {T}
+::Question 7::
+Tapotement is a massage technique known for its soothing, circular movements. {F}
+}
