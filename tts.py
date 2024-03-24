@@ -86,74 +86,62 @@ test_json = '''
 {
     "dialogue": [
         {
-            "name": "Anchor",
-            "gender": "MALE",
-            "voice": "en-NZ-MitchellNeural",
-            "line": "Good evening, and welcome to the Health and Wellness segment of our news. Tonight, we spotlight the evolution of massage techniques and how they're revolutionizing the way we approach physical well-being. Our correspondent, Taylor Green, has the story."
-        },
-        {
-            "name": "Taylor Green",
+            "name": "Lisa",
             "gender": "FEMALE",
             "voice": "en-AU-AnnetteNeural",
-            "line": "Thank you. Massage therapy, a practice as ancient as it is therapeutic, has seen remarkable evolution over the centuries. Today, I'm here at the National Wellness Conference, where experts have gathered to discuss the latest advancements in massage techniques."
+            "line": "Good afternoon, Radiant Wellness Clinic. Lisa speaking."
         },
         {
-            "name": "Dr. Maya Chen",
+            "name": "Client 4",
             "gender": "FEMALE",
             "voice": "en-NZ-MollyNeural",
-            "line": "Massage therapy has come a long way. From the traditional Swedish massage, known for its gentle and relaxing strokes, to the more intense deep tissue massage, aimed at relieving musculoskeletal issues."
+            "line": "Hello, I didn’t receive my appointment reminder. Could you check my booking?"
         },
         {
-            "name": "Taylor Green",
+            "name": "Lisa",
             "gender": "FEMALE",
             "voice": "en-AU-AnnetteNeural",
-            "line": "Dr. Maya Chen, a renowned physiotherapist, highlights how different techniques cater to diverse needs. For instance, Shiatsu, a Japanese technique, applies pressure to specific points on the body, promoting energy flow and relaxation."
+            "line": "Certainly, may I have your name, please?"
         },
         {
-            "name": "Alex Rivera",
-            "gender": "MALE",
-            "voice": "en-NZ-MitchellNeural",
-            "line": "And it's not just about relaxation. Sports massage, for instance, focuses on the needs of athletes, helping them recover from injuries or enhance their performance."
-        },
-        {
-            "name": "Taylor Green",
-            "gender": "FEMALE",
-            "voice": "en-AU-AnnetteNeural",
-            "line": "That's Alex Rivera, a sports massage therapist. Techniques like trigger point therapy and lymphatic drainage are also gaining popularity for their targeted benefits."
-        },
-        {
-            "name": "Dr. Chen",
+            "name": "Client 4",
             "gender": "FEMALE",
             "voice": "en-NZ-MollyNeural",
-            "line": "The beauty of massage therapy lies in its versatility. Techniques like hot stone massage use heated stones to relax muscles deeply, while aromatherapy massage incorporates essential oils for a holistic experience."
+            "line": "Samantha Lee."
         },
         {
-            "name": "Taylor Green",
+            "name": "Lisa",
             "gender": "FEMALE",
             "voice": "en-AU-AnnetteNeural",
-            "line": "With such variety, the key is understanding the client's needs. Reflexology, for instance, might be perfect for someone looking for a less conventional approach, applying pressure to the feet or hands to improve health."
+            "line": "One moment, Ms. Lee... Yes, you have an appointment for a Swedish massage this Saturday at 10 AM. Would you like me to resend the reminder?"
         },
         {
-            "name": "Anchor",
-            "gender": "MALE",
-            "voice": "en-NZ-MitchellNeural",
-            "line": "Fascinating insights, Taylor. It's clear that the field of massage therapy is as dynamic as it is diverse, with each technique offering unique benefits."
+            "name": "Client 4",
+            "gender": "FEMALE",
+            "voice": "en-NZ-MollyNeural",
+            "line": "Please, that would be great."
         },
         {
-            "name": "Taylor Green",
+            "name": "Lisa",
             "gender": "FEMALE",
             "voice": "en-AU-AnnetteNeural",
-            "line": "Absolutely. And as professionals continue to explore and innovate, the future of massage therapy holds even greater promise for holistic health and wellness."
+            "line": "Done. You should receive it shortly."
         },
         {
-            "name": "Anchor",
-            "gender": "MALE",
-            "voice": "en-NZ-MitchellNeural",
-            "line": "Taylor Green reporting. Thank you for that enlightening feature. Stay with us for more news on how traditional practices are shaping modern health care. Goodnight."
+            "name": "Client 4",
+            "gender": "FEMALE",
+            "voice": "en-NZ-MollyNeural",
+            "line": "Thank you very much."
+        },
+        {
+            "name": "Lisa",
+            "gender": "FEMALE",
+            "voice": "en-AU-AnnetteNeural",
+            "line": "My pleasure. See you on Saturday!"
         }
     ]
 }
 '''
-generate_dialogue_from_json(test_json, "mytestdialogue")
+generate_dialogue_from_json(test_json, "listening_dialogue_week6_4")
 
 #generate("Hi, I'm Mia. My expertise lies in Deep Tissue Massage and Acupressure. I utilize deep pressure and manipulation of the body's soft tissues to relieve muscle tension and knots. Acupressure, which involves applying pressure to specific points on the body, complements my technique by targeting areas of pain and discomfort. This approach is ideal for clients suffering from chronic pain or recovering from injuries.", "FEMALE")

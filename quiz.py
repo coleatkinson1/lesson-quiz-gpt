@@ -6,13 +6,14 @@ from langchain_openai import ChatOpenAI
 
 llm = ChatOpenAI(model="gpt-4")
 
-prompt_prefix = "You are an AI assistant that generates a Quiz in the moodle GIFT format. Do not include anything else in your answer besides the GIFT formatted quiz, so that this can be uploaded directly to moodle."
+prompt_prefix = "You are an AI assistant that generates a Quiz in the moodle GIFT format. Do not include anything else in your answer besides the GIFT formatted quiz, so that this can be uploaded directly to moodle. Try to give descriptive names to questions, like ::Question about cake:: . Make sure to include an empty line between questions, which helps with import parsing."
 
 prompt_vocab = "Given the following vocabulary word list, create a quiz using the 'Matching' question type. The student should match the vocabulary word to it's corresponding definition. \n\nVocabulary List:\n{input}"
 
+# Unused - could lead to altered data
 prompt_vocab_title = "Given the following vocabulary word list, create an HTML table with the columns 'Word' and 'Definition'. Also add a header row. \n\nVocabulary List: {input}"
 
-prompt_grammar = "Given the following grammar lesson, create a quiz using the 'Missing Word' question type.  \n\nGrammar Lesson:\n{input}"
+prompt_grammar = "Given the following grammar lesson, create a quiz about the grammar rule taught in this lesson, consisting of at least {qnum} questions using the 'Missing Word' question type. Make sure to include some incorrect answers using the ~ symbol, so that the student has options to choose from. \n\nGrammar Lesson:\n{input}"
 
 prompt_reading_1 = "Given the following text, create a quiz of at least {qnum} questions using the 'Multiple choice' question type.  \n\nText:\n{input}"
 
@@ -51,57 +52,53 @@ You are an AI assistant that converts text representing dialogue into JSON data,
 prompt_dialogue = "Convert the following dialogue into the JSON format as described above:\n\nDialogue:\n{input}"
 
 vocab_list = """
-Swedish massage - A gentle type of full-body massage that's ideal for people who are new to massage, have a lot of tension, or are sensitive to touch.
-Deep tissue massage - A massage technique that's mainly used to treat musculoskeletal issues, such as strains and sports injuries.
-Shiatsu - A form of Japanese bodywork that uses localized finger pressure in a rhythmic sequence on acupuncture meridians.
-Reflexology - A therapy that involves applying pressure to specific points on the feet or hands.
-Aromatherapy - The use of essential oils and other aromatic plant compounds for healing and cosmetic purposes.
-Hot stone massage - A type of massage therapy that involves the use of smooth, heated stones.
-Sports massage - A form of massage involving the manipulation of soft tissue to benefit a person engaged in regular physical activity.
-Trigger point therapy - A bodywork technique that involves the applying of pressure to tender muscle tissue in order to relieve pain and dysfunction in other parts of the body.
-Lymphatic drainage - A gentle massage intended to encourage the natural drainage of the lymph, which carries waste products away from the tissues back toward the heart.
-Effleurage - A form of massage involving a circular stroking movement made with the palm of the hand.
-Petrissage - A massage technique that involves kneading the muscles with fingers.
-Tapotement - A rhythmic percussion, most frequently administered with the edge of the hand, a cupped hand, or the tips of the fingers.
-Friction - A massage technique used to generate heat and stimulate blood circulation.
-Vibration - A technique in massage where tissues are pressed and released in an up and down movement.
-Manual lymph drainage - A type of gentle massage intended to encourage the natural drainage of the lymph from the tissues space body.
+Appointment - A time you have arranged to meet someone or go somewhere.
+Schedule - A plan for carrying out a process or procedure, giving lists of intended events and times.
+Confirmation - The action of confirming something or the state of being confirmed.
+Cancellation - The action of canceling something that has been arranged or planned.
+Reschedule - Arrange for an event or appointment to take place at a new and later time.
+Availability - The quality of being able to be used or obtained.
+Invoice - A list of goods sent or services provided, with a statement of the sum due for these.
+Payment - The action or process of paying someone or something or of being paid.
+Record-keeping - The activity or occupation of keeping records or accounts.
+Database - A structured set of data held in a computer, especially one that is accessible in various ways.
+Reminder - A thing that causes someone to remember something.
+No-show - A person who has made a reservation, booking, or appointment but neither keeps nor cancels it.
+Policy - A course or principle of action adopted or proposed by an organization or individual.
+Late fee - A charge to a borrower for not paying a bill or returning a rented or borrowed item by its due date.
+Booking - The action of reserving accommodations, a place, etc., or buying a ticket in advance.
 """
 
 grammar_lesson = """
-Grammar Lesson: Comparatives and Superlatives
-Comparatives and superlatives are used to compare two or more things. In massage therapy, they help to discuss the effectiveness of different techniques, the intensity of pressure, or clients' preferences.
+Grammar Lesson: Future Simple with 'will' 
+The Future Simple tense is formed with "will" and is used to discuss future decisions, promises, offers, and plans. This is particularly useful in a massage therapy setting for scheduling appointments and planning future sessions with clients.
 Grammar Rule:
-    • Comparatives: Add "-er" to adjectives (short words) or use "more" before longer adjectives.
-        ◦ Formation: Subject + verb + comparative adjective + than + object/noun.
-    • Superlatives: Add "-est" to adjectives (short words) or use "most" before longer adjectives.
-        ◦ Formation: Subject + verb + the + superlative adjective + object/noun.
+    • Formation: Subject + will + base form of the verb.
 Examples Related to Lesson:
-    • "Swedish massage is gentler than deep tissue massage."
-    • "This is the most effective technique for relieving back pain."
+    • "I will confirm your appointment by email."
+    • "We will send a reminder the day before your scheduled visit."
+    • "You will receive a call if there are any changes to your appointment."
 """
 
 reading_lesson = """
-A variety of techniques
+Not all plans go as expected
 
-In the realm of massage therapy, a variety of techniques offer pathways to relaxation and healing, each with its own unique benefits. The gentle strokes of Swedish massage make it the most suitable choice for those new to massage therapy, offering a softer touch compared to the firmer pressure of deep tissue massage. This latter technique is ideal for addressing deeper musculoskeletal issues, proving to be more effective for athletes or individuals with chronic pain.
-Among the array of massage styles, Shiatsu stands out for its use of rhythmic finger pressure along the body's meridian points, offering a more targeted approach than the broad strokes of effleurage, a technique known for its soothing, circular movements. Similarly, reflexology focuses on specific points on the feet and hands, believed to correspond with different body organs, making it more specialized than general aromatherapy massage, which utilises the healing properties of essential oils for a more sensory experience.
-Hot stone massage, incorporating warmed stones, offers a unique warmth that penetrates muscles more deeply than the manual techniques of petrissage, which involves kneading the muscles to relieve tension. Sports massage, on the other hand, is tailored specifically for those with active lifestyles, making it more beneficial for athletes than the gentle approach of lymphatic drainage, designed to support the body's natural detoxification process.
-From the percussive taps of tapotement to the smooth motions of friction and vibration techniques, each method has its place in the spectrum of massage therapy, catering to a wide range of preferences and needs. Whether seeking relief from pain, tension, or simply in pursuit of relaxation, there's a massage technique that stands as the best choice for every individual's unique condition.
+In the bustling world of a massage clinic, keeping an organised schedule is key to ensuring that everything runs smoothly. Lisa, the clinic's receptionist, plays a crucial role in managing appointments and administrative tasks. She uses a digital database to track each therapist's availability and to book clients accordingly. "I will confirm your appointment by email," she often says, providing clients with the reassurance that their booking is secured.
+However, not all plans go as expected. Sometimes, clients need to cancel or reschedule. When this happens, Lisa is ready. "If you need to cancel, please let us know 24 hours in advance," she advises, referring to the clinic's policy. This allows her to update the schedule and offer the slot to someone else.
+Payment and invoicing are also part of Lisa's responsibilities. After each session, she ensures that payments are processed and that clients receive their invoices promptly. For those who forget their appointments, a polite reminder is sent out, and a no-show fee might apply, as stated in the clinic's policy.
+Record-keeping is essential, not just for financial reasons but also for maintaining a history of each client's treatments. This careful attention to administrative tasks ensures the clinic operates without a hitch, providing a seamless experience for both clients and therapists.
 """
 
 listening_lesson = """
-Anchor: Good evening, and welcome to the Health and Wellness segment of our news. Tonight, we spotlight the evolution of massage techniques and how they're revolutionizing the way we approach physical well-being. Our correspondent, Taylor Green, has the story.
-Taylor Green: Thank you. Massage therapy, a practice as ancient as it is therapeutic, has seen remarkable evolution over the centuries. Today, I'm here at the National Wellness Conference, where experts have gathered to discuss the latest advancements in massage techniques.
-Dr. Maya Chen: [Background sounds of the conference] Massage therapy has come a long way. From the traditional Swedish massage, known for its gentle and relaxing strokes, to the more intense deep tissue massage, aimed at relieving musculoskeletal issues.
-Taylor Green: Dr. Maya Chen, a renowned physiotherapist, highlights how different techniques cater to diverse needs. For instance, Shiatsu, a Japanese technique, applies pressure to specific points on the body, promoting energy flow and relaxation.
-Alex Rivera: And it's not just about relaxation. Sports massage, for instance, focuses on the needs of athletes, helping them recover from injuries or enhance their performance.
-Taylor Green: That's Alex Rivera, a sports massage therapist. Techniques like trigger point therapy and lymphatic drainage are also gaining popularity for their targeted benefits.
-Dr. Chen: The beauty of massage therapy lies in its versatility. Techniques like hot stone massage use heated stones to relax muscles deeply, while aromatherapy massage incorporates essential oils for a holistic experience.
-Taylor Green: With such variety, the key is understanding the client's needs. Reflexology, for instance, might be perfect for someone looking for a less conventional approach, applying pressure to the feet or hands to improve health.
-Anchor: Fascinating insights, Taylor. It's clear that the field of massage therapy is as dynamic as it is diverse, with each technique offering unique benefits.
-Taylor Green: Absolutely. And as professionals continue to explore and innovate, the future of massage therapy holds even greater promise for holistic health and wellness.
-Anchor: Taylor Green reporting. Thank you for that enlightening feature. Stay with us for more news on how traditional practices are shaping modern health care. Goodnight.
+Lisa: "Good afternoon, Radiant Wellness Clinic. Lisa speaking."
+Client 4: "Hello, I didn’t receive my appointment reminder. Could you check my booking?"
+Lisa: "Certainly, may I have your name, please?"
+Client 4: "Samantha Lee."
+Lisa: "One moment, Ms. Lee... Yes, you have an appointment for a Swedish massage this Saturday at 10 AM. Would you like me to resend the reminder?"
+Client 4: "Please, that would be great."
+Lisa: "Done. You should receive it shortly."
+Client 4: "Thank you very much."
+Lisa: "My pleasure. See you on Saturday!"
 """
 
 def gen_quiz(prompt, filename):
@@ -140,13 +137,15 @@ def gen_dialogue(prompt, filename):
     except Exception as e:
         print(e)
 
+gen_dialogue(prompt_dialogue.format(input=listening_lesson), "./output/dialogue.json")
+quit()
 
 # Vocabulary
 gen_quiz(prompt_vocab.format(input=vocab_list), "./output/vocabulary_quiz.txt")
-gen_vocab_table("./output/vocabulary_table.txt")
+#gen_vocab_table("./output/vocabulary_table.txt")
 
 # Grammar
-gen_quiz(prompt_grammar.format(input=grammar_lesson), "./output/grammar_quiz.txt")
+gen_quiz(prompt_grammar.format(qnum=10, input=grammar_lesson), "./output/grammar_quiz.txt")
 
 # Reading
 gen_quiz(prompt_reading_1.format(qnum=5, input=reading_lesson), "./output/reading_quiz_1.txt")
